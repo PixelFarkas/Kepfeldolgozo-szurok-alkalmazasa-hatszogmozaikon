@@ -1,0 +1,1 @@
+# Kepfeldolgozo-szurok-alkalmazasa-hatszogmozaikon
