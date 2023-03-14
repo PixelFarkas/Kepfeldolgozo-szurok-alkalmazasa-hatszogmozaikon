@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="495.0" prefWidth="620.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/18" fx:controller="com.example.szakdolgozat.HexagonController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="welcomeText" alignment="CENTER" prefHeight="32.0" prefWidth="619.0"
+           text="Adja meg a képet, és a műveletet amit végre szeretne hajtani!" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+    <Label text="Kép elérési útvonala">
+        <font>
+            <Font size="17.0"/>
+        </font>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="25.0" prefWidth="603.0">
+        <children>
+            <TextField fx:id="path" prefHeight="25.0" prefWidth="471.0" promptText="Kép elérési útvonala"/>
+            <Button id="chose_path" mnemonicParsing="false" onMouseClicked="#showOpenDialog" prefHeight="25.0"
+                    prefWidth="98.0" text="Tallózás"/>
+        </children>
+    </HBox>
+    <Label text="Szűrők, operátorok">
+        <font>
+            <Font size="17.0"/>
+        </font>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="103.0" prefWidth="577.0">
+        <children>
+            <VBox prefHeight="115.0" prefWidth="367.0">
+                <children>
+                    <ListView fx:id="masks" prefHeight="223.0" prefWidth="367.0"/>
+                </children>
+            </VBox>
+            <VBox prefHeight="111.0" prefWidth="151.0">
+                <children>
+
+                    <RadioButton fx:id="mean" mnemonicParsing="false" prefHeight="17.0" prefWidth="106.0"
+                                 text="Átlagoló szűrés">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="mask"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <ComboBox fx:id="meanradius" prefWidth="150.0" promptText="Sugár">
+                        <VBox.margin>
+                            <Insets left="30.0" right="30.0"/>
+                        </VBox.margin>
+                    </ComboBox>
+                    <RadioButton fx:id="gauss" mnemonicParsing="false" prefHeight="17.0" prefWidth="107.0"
+                                 text="Gauss-szűrő" toggleGroup="$mask">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </RadioButton>
+                    <ComboBox fx:id="gaussradius" prefWidth="150.0" promptText="Sugár">
+                        <VBox.margin>
+                            <Insets left="30.0" right="30.0"/>
+                        </VBox.margin>
+                    </ComboBox>
+                    <RadioButton fx:id="unsharp" mnemonicParsing="false" prefHeight="17.0" prefWidth="122.0"
+                                 text="Unsharp szűrő" toggleGroup="$mask">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </RadioButton>
+                    <RadioButton fx:id="sobel" mnemonicParsing="false" prefHeight="17.0" prefWidth="116.0"
+                                 text="Sobel operátor" toggleGroup="$mask">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </RadioButton>
+                    <RadioButton fx:id="freiChen" mnemonicParsing="false" prefHeight="17.0" prefWidth="105.0"
+                                 text="Frei-Chen filter" toggleGroup="$mask">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </RadioButton>
+                    <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+
+                            <Button mnemonicParsing="false" onMouseClicked="#onAddMask" text="Hozzáad"
+                                    textAlignment="CENTER"/>
+                            <Button mnemonicParsing="false" onMouseClicked="#onDeleteMask" text="Törlés"
+                                    textAlignment="CENTER">
+                                <HBox.margin>
+                                    <Insets left="30.0"/>
+                                </HBox.margin>
+                            </Button>
+                        </children>
+                        <VBox.margin>
+                            <Insets top="15.0"/>
+                        </VBox.margin>
+                    </HBox>
+                </children>
+                <HBox.margin>
+                    <Insets left="30.0"/>
+                </HBox.margin>
+            </VBox>
+
+
+        </children>
+    </HBox>
+    <Label text="Kép mentési helye és neve">
+        <font>
+            <Font size="17.0"/>
+        </font>
+        <VBox.margin>
+            <Insets top="30.0"/>
+        </VBox.margin>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="25.0" prefWidth="603.0">
+        <children>
+            <TextField id="save_path" fx:id="savePath" prefHeight="25.0" prefWidth="471.0"
+                       promptText="Kép mentési útvonala">
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+            </TextField>
+            <Button id="chose_save_path" mnemonicParsing="false" onMouseClicked="#showSaveDialog" prefHeight="25.0"
+                    prefWidth="98.0" text="Tallózás"/>
+        </children>
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+    </HBox>
+    <Button id="start" onMouseClicked="#onStart" text="Kép készítése"/>
+</VBox>
